@@ -1,8 +1,8 @@
-const bcrypt =require('bcrypt');
+// const bcrypt =require('bcrypt');
 const fs = require('fs');
 const usuarios = require('../databases/usuarios.json');
 
-const listarUsuario = require('..databases/usuarios.json');
+
 
 function listar(){
     // Seu código aqui
@@ -11,7 +11,7 @@ function listar(){
             id:u.id,
             nome: u.nome,
             email: u.email
-            
+
         }
     }
 
@@ -19,9 +19,29 @@ function listar(){
     ));
 
 }
+function listarNomes(){
+  const retornaNome = usuario =>{
+    return usuario.nome;
+
+  }
+    let nomeDosUsuarios = usuarios.map(retornaNome);
+    console.table(nomeDosUsiuarios);
+    
+}
+
+function buscar(trecho){
+   let temTrechoNome = usuario => usuario.nome.includes(trecho);
+   let usuarioscomnomesbuscados = usuarios.filter(temTrechoNoNome);
+   return usuarioscomnomesbuscados;
+    
+}
+
 
 function salvar(arrayDeUsuarios){
     // Seu código aqui
+    const fs =require('fs');
+    fs.writeFileSync('./databases/usuarios.json' , JASON.stringify(arrayDeUsuarios ,null,4));
+
 }
 
 
@@ -45,15 +65,9 @@ fs.writFileSync('./databases/usuarios.json', JSON.stringify(Usuarios,null,4));
 }
 
 
-let usuario = {
-nome: "Nome do Usuário",
-email:"email@dousuario.com",
-senha: 123456,
-endereco: ["Rua dos usuários, nº 256. Usuariolândia-BA"] ,
 
-}
 
-cadastrar(Usuario);
+// cadastrar(Usuario);
 
 
 
@@ -98,6 +112,9 @@ function alterarFormaDePagamento(novaFormaDePagamento, posicaoDaFormaDePagamento
 const UsuariosServices = {
     cadastrar,
     listar,
+    listarNomes,
+    salvar,
+    buscar,
     detalhar,
     remover,
     alterar,
