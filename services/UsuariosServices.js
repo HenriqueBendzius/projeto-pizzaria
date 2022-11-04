@@ -75,38 +75,103 @@ fs.writFileSync('./databases/usuarios.json', JSON.stringify(Usuarios,null,4));
 
 function detalhar(idUsuario){
 // Seu código aqui
+    let usuarioAchado=dadosUsuarios.find(u => u.id == idUsuario)
+
+    console.log(`nome: ${usuarioAchado.nome}`);
+    console.log(`email:${usuarioAchado}`);
+    console.log(`endereços`);
+    console.table(usuarioAchado.endereco);
+    console.log(`\n`);
+    console.log(`formasDePagamento`);
+    console.table(usuarioAchado.formasDePagamento)
+            
+
+
+
+
 }
 
 function remover(idDoUsuarioParaRemover){
     // Seu código aqui
+
+    let removerId = removerId.map(function(objeto){
+        if(objeto.id != id)
+        return objeto;
+        else {
+            return false;
+        }
+    })
+
+
 }
 
 function alterar(novosDados, idUsuario){
     // Seu código aqui
+let index = dadosUsuarios.findIndex(u=> u.id == idUsuario)
+
+    dadosUsuarios[index].nome = novosDados.nome
+    dadosUsuarios[index].email = novosDados.email
+    dadosUsuarios[index].senha = novosDados.senha
+    salvar(dadosUsuarios)
+
 }
 
 function addEndereco(novoEndereco, idUsuario){
     // Seu código aqui
+    let index = dadosUsuarios.findIndex(u=> u.id == idUsuario)
+    dadosUsuarios[index].endereco.push(novoEndereco)
+    salvar(dadosUsuarios)
+
+    
+
 }
 
 function removerEndereco(posicaoDoEndereco, idUsuario){
 // Seu código aqui
+    let index = dadosUsuarios.findIndex(u => u.id == idUsuario)
+    dadosUsuarios[index].enderecos.splice(posicaoDoEndereco,1)
+    salvar(dadosUsuarios)
+
+
+
+
 }
 
 function alterarEndereco(posicaoDoEndereco, novoEndereco, idUsuario){
 // Seu código aqui        
+let index = dadosUsuarios.findIndex(u => u.id == idUsuario)
+dadosUsuarios[index].enderecos.splice(posicaoDoEndereco,1 , novoEndereco)
+salvar(dadosUsuarios)
+
+
 }
 
 function addFormaDePagamento(novaFormaDePagamento, idUsuario){
     // Seu código aqui
+    let index = dadosUsuarios.findIndex(u => u.id == idUsuario)
+    dadosUsuarios[index].formasDePagamento.push(novaFormaDePagamento)
+    salvar(dadosUsuarios)
+
+
 }
 
 function removerFormaDePagamento(posicaoDaFormaDePagamento, idUsuario){
     // Seu código aqui
+    let index = dadosUsuarios.findIndex(u => u.id == idUsuario)
+    dadosUsuarios[index].formasDePagamento.splice(posicaoDaFormaDePagamento ,1)
+    salvar(dadosUsuarios)
+
+
 }
 
 function alterarFormaDePagamento(novaFormaDePagamento, posicaoDaFormaDePagamento, idUsuario){
     // Seu código aqui
+    let index = dadosUsuarios.findIndex(u => u.id == idUsuario)
+    dadosUsuarios[index].formasDePagamento.splice(posicaoDaFormaDePagamento ,1 , novaFormaDePagamento)
+    salvar(dadosUsuarios)
+
+
+
 }
 
 const UsuariosServices = {
